@@ -2,7 +2,8 @@ name: Lncn
 
 on:
   push:
-    branches: master
+    branches:
+      master
 
 jobs:
   build:
