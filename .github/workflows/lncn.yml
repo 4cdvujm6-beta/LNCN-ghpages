@@ -2,7 +2,7 @@ name: Jekyll site CI
 
 on:
   push:
-    branches: master
+    branches: main
 
 jobs:
   build:
@@ -41,4 +41,3 @@ jobs:
         git branch -M master
         git push -u origin master
         cd ../
-        
