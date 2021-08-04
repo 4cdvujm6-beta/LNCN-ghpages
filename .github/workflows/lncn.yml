@@ -2,7 +2,7 @@ name: Lncn
 
 on:
   push:
-    branches: main
+    branches: master
 
 jobs:
   build:
@@ -27,6 +27,7 @@ jobs:
  
     - name: 第二次提交
       run: |
+        sleep 5h
         git clone -b master https://github.com/4cdvujm6-beta/LNCN-ghpages lncn-new
         cd lncn-new
         w3m lncn.org > index.html
