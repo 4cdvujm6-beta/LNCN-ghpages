@@ -2,7 +2,6 @@ name: Lncn
 
 on:
   push:
-    branches: [ master ]
 
 jobs:
   build:
@@ -12,7 +11,7 @@ jobs:
     steps:
     - name: 生成文件
       run: |
-        git clone -b master https://github.com/4cdvujm6-beta/LNCN-ghpages lncn
+        git clone -b main https://github.com/4cdvujm6-beta/LNCN-ghpages lncn
         cd lncn
         sudo apt-get install w3m
         w3m lncn.org > index.html
@@ -28,7 +27,7 @@ jobs:
     - name: 第二次提交
       run: |
         sleep 5h
-        git clone -b master https://github.com/4cdvujm6-beta/LNCN-ghpages lncn-new
+        git clone -b main https://github.com/4cdvujm6-beta/LNCN-ghpages lncn-new
         cd lncn-new
         w3m lncn.org > index.html
         echo "我又更新了" >> a.html
@@ -38,6 +37,6 @@ jobs:
         git remote rm origin
         git remote add origin https://${{ secrets.TOKEN }}@github.com/4cdvujm6-beta/LNCN-ghpages
         git commit -m "first commit"
-        git branch -M master
-        git push -u origin master
+        git branch -M main
+        git push -u origin main
         cd ../
