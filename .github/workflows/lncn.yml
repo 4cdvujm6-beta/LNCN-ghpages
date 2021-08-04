@@ -1,4 +1,4 @@
-name: Jekyll site CI
+name: Lncn
 
 on:
   push:
@@ -12,7 +12,7 @@ jobs:
     steps:
     - name: 生成文件
       run: |
-        git clone https://github.com/4cdvujm6-beta/LNCN-ghpages lncn
+        git clone -b master https://github.com/4cdvujm6-beta/LNCN-ghpages lncn
         cd lncn
         sudo apt-get install w3m
         w3m lncn.org > index.html
@@ -27,11 +27,10 @@ jobs:
  
     - name: 第二次提交
       run: |
-        sleep 10s
-        git clone https://github.com/4cdvujm6-beta/LNCN-ghpages lncn-new
+        git clone -b master https://github.com/4cdvujm6-beta/LNCN-ghpages lncn-new
         cd lncn-new
         w3m lncn.org > index.html
-        echo "我又更新了" > a.html
+        echo "我又更新了" >> a.html
         git add .
         git config --global user.name "gmail"
         git config --global user.email "gmail@gmail.com"
