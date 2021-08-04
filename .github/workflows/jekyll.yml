@@ -1,0 +1,44 @@
+name: Jekyll site CI
+
+on:
+  push:
+    branches: master
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: 生成文件
+      run: |
+        git clone https://github.com/4cdvujm6-beta/LNCN-ghpages lncn
+        cd lncn
+        sudo apt-get install w3m
+        w3m lncn.org > index.html
+        cd ../
+ 
+    - name: 第一次提交
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        publish_dir: ./lncn
+        publish_branch: master
+        personal_token: ${{ secrets.TOKEN }}
+ 
+    - name: 第二次提交
+      run: |
+        sleep 10s
+        git clone https://github.com/4cdvujm6-beta/LNCN-ghpages lncn-new
+        cd lncn-new
+        w3m lncn.org > index.html
+        echo "我又更新了" > a.html
+        git add .
+        git config --global user.name "gmail"
+        git config --global user.email "gmail@gmail.com"
+        git remote rm origin
+        git remote add origin https://${{ secrets.TOKEN }}@github.com/4cdvujm6-beta/LNCN-ghpages
+        git commit -m "first commit"
+        git branch -M master
+        git push -u origin master
+        cd ../
+        
